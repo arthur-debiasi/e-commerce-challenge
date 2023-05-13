@@ -6,7 +6,7 @@ export default class ProductsModel {
 
   public getProducts = async () => {
     const query = `SELECT * FROM ecommerce_db.products`;
-    const result = await this.conn.execute<RowDataPacket[]>(query);
+    const [result] = await this.conn.execute<RowDataPacket[]>(query);
     return result
   };
 }
