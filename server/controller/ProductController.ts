@@ -10,10 +10,23 @@ export default class ProductsController {
     res.status(200).json(products);
   };
 
-  public postProduct = async (req: CustomRequest, res: Response) => {
+  public validateProducts = async (req: CustomRequest, res: Response) => {
     const { csvData } = req;
-    console.log(csvData);
-    
-    res.status(200).json(csvData);
+    if(csvData) {
+      const result = await this.service.validateProducts(csvData);
+      res.status(200).json(result);
+    } else {
+      res.status(500).json({message: 'Bad request (csv file)'})
+    }
   };
+
+  public updateProducts = async (req: CustomRequest, res: Response) => {
+    const { csvData } = req;
+    if(csvData) {
+      const result = await this.service.updateProducts(csvData);
+      res.status(204).json(result);
+  } else {
+    res.status(500).json({message: 'Bad request (csv file)'})
+  }
+}
 }

@@ -8,10 +8,13 @@ export default function Table() {
     <table>
       <thead>
         <tr>
-          <th>Código do produto</th>
-          <th>Preço Atual</th>
-          <th>Novo Preço</th>
-          <th>Status</th>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Preço de Custo</th>
+          <th>Atual Preço de Venda</th>
+          <th>Novo Preço de Venda</th>
+          <th>Status Financeiro</th>
+          <th>Status Marketing</th>
         </tr>
       </thead>
       <tbody>

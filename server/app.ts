@@ -1,14 +1,12 @@
 import express, { Request, Response } from 'express';
-import ProductsRouter from './routes/ProductsRouter';
+import ProductsRoute from './routes/ProductsRoute';
 import cors from 'cors';
-import { csvMiddleware, upload } from './middleware/csvMiddleware';
-
 
 const app = express();
 
 app.use(express.json());
 app.use(cors())
 
-app.use('/products', ProductsRouter)
+app.use('/products', ProductsRoute)
 
 export default app;

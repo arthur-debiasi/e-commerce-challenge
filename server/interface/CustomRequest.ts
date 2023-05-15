@@ -1,11 +1,6 @@
 import { Request } from 'express';
-import { Multer } from 'multer';
-
-interface CsvData {
-  product_code: number;
-  new_price: string;
-}
+import { INewProduct } from './IProduct';
 
 export default interface CustomRequest extends Request {
-  csvData?: Multer
+  csvData?: INewProduct[],
 }

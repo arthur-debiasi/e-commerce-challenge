@@ -2,14 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function TableRow(
-  { product: { product_code: productCode, new_price: newPrice } },
+  { product: {
+    code, productName, costPrice, salesPrice, newPrice, finErr, mktErr,
+  } },
 ) {
   return (
     <tr>
-      <td>{productCode}</td>
-      <td>R$ 100,00</td>
+      <td>{code}</td>
+      <td>{productName}</td>
+      <td>{costPrice}</td>
+      <td>{salesPrice}</td>
       <td>{newPrice}</td>
-      <td>Em oferta</td>
+      <td>{finErr}</td>
+      <td>{mktErr}</td>
     </tr>
   );
 }

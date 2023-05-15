@@ -6,6 +6,9 @@ import AppContext from './AppContext';
 export default function AppProvider({ children }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [products, setProducts] = useState([]);
+  const [uploadErr, setUploadErr] = useState('');
+  const [updateMsg, setUpdateMsg] = useState('');
+  const [canUpdate, setCanUpdate] = useState(false);
 
   const handleFileChange = useCallback((event) => {
     setSelectedFile(event.target.files[0]);
@@ -15,18 +18,66 @@ export default function AppProvider({ children }) {
     const formData = new FormData();
     formData.append('file', selectedFile);
     try {
-      const { data } = await axios.post('http://localhost:3001/products', formData);
-      console.log(data);
+      const { data } = await axios.post('http://localhost:3001/products/validate', formData);
+      setUploadErr('');
       setProducts(data);
+      setCanUpdate(true);
     } catch (error) {
-      console.error('Error uploading file: ', error);
+      if (error.response) {
+        console.error('Error uploading file:', error.response.status);
+        if (error.response.data.error === 'INVALID_KEYS') {
+          console.error('O arquivo CSV contém chaves inválidas.');
+          setProducts([]);
+          setUploadErr('O arquivo CSV contém chaves inválidas.');
+          setCanUpdate(false);
+        } else if (error.response.data.error === 'INVALID_VALUES') {
+          console.error('O arquivo CSV contém valores não-numéricos.');
+          setProducts([]);
+          setUploadErr('O arquivo CSV contém valores não-numéricos.');
+          setCanUpdate(false);
+        } else if (error.response.data.error === 'PRODUCT_NOT_FOUND') {
+          const code = error.response.data.product_code;
+          console.error(`O produto de código ${code} não foi encontrado.`);
+          setProducts([]);
+          setUploadErr(`O produto de código ${code} não foi encontrado.`);
+          setCanUpdate(false);
+        }
+      } else {
+        console.error('Error updating file:', error.message);
+      }
     }
   }, [selectedFile]);
 
+  const handleUpdate = useCallback(async () => {
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    try {
+      const { data } = await axios.put('http://localhost:3001/products/update', formData);
+      setUpdateMsg('Produto(s) atualizados com sucesso!');
+      setProducts(data);
+      setCanUpdate(true);
+    } catch (error) {
+      console.error('Error uploading file:', error.response.status);
+    }
+  }, [selectedFile]);
   const contextValue = useMemo(() => ({
-    handleFileChange, handleUpload, selectedFile, products,
+    handleFileChange,
+    handleUpload,
+    handleUpdate,
+    selectedFile,
+    products,
+    uploadErr,
+    canUpdate,
+    updateMsg,
   }), [
-    handleFileChange, handleUpload, selectedFile, products,
+    handleFileChange,
+    handleUpload,
+    handleUpdate,
+    selectedFile,
+    products,
+    uploadErr,
+    canUpdate,
+    updateMsg,
   ]);
   return (
     <AppContext.Provider
