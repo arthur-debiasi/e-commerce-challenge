@@ -1,6 +1,6 @@
 # E-commerce Challenge
 
-## 💻 About 
+## 💻 About
 
 This web application is specifically designed for updating product prices within an e-commerce database. Users have the ability to modify both individual product prices and pack prices by uploading CSV files while adhering to business rules established by the finance and marketing teams.
 
@@ -41,6 +41,7 @@ After that, the application can be started with:
 ```bash
 npm start
 ```
+
 This script starts both the client and server!
 
 Or, also with the development script:
@@ -48,15 +49,18 @@ Or, also with the development script:
 ```bash
 npm run dev
 ```
+
 This script starts both the client and server (on development mode)!
 
 ## 📜 Business Rules
 
 1. The pricing file provided by the Purchasing team must always be in CSV format, containing the product code and the new price, as shown in the example below.
+
 ```csv
 product_code,new_price
 16,25.50
 ```
+
 2. The system must prevent the selling price of products from being below their cost.
 3. The system must prevent any price adjustments that exceed 10% of the current product price.
 4. Products sold in packs must have their components adjusted so that the final price of the components equals the price of the pack.
@@ -79,8 +83,7 @@ product_code,new_price
 
 ## 🧪 Testing
 
-While there is currently no automated testing routine in place, all business rules have been manually tested using CSV files located in the csv_mocks directory. This manual testing process ensured that 
-these business rules were successfully validated and fulfilled.
+While there is currently no automated testing routine in place, all business rules have been manually tested using CSV files located in the csv_mocks directory. This manual testing process ensured that these business rules were successfully validated and fulfilled.
 
 ## 🚶 Next Steps
 
