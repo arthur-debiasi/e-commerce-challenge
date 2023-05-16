@@ -15,10 +15,10 @@ function FileUpload() {
     <div>
       <input type="file" accept=".csv" onChange={ handleFileChange } />
       <button onClick={ handleUpload } disabled={ !selectedFile }>
-        Validar Arquivo
+        VALIDAR
       </button>
       <button onClick={ handleUpdate } disabled={ !canUpdate }>
-        Atualizar Produto(s)
+        ATUALIZAR
       </button>
       <span>{uploadErr}</span>
       <span>{updateMsg}</span>
