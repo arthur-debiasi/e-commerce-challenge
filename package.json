@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run database:up\" \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "install": "concurrently \"npm run install:server\" \"npm run install:client\"",
     "install:client": "cd client && npm i",
     "install:server": "cd server && npm i",
