@@ -2,11 +2,9 @@
 
 ## 💻 About 
 
-This web application is specifically designed for updating product prices within an e-commerce database. Users have the ability to modify both individual product prices and pack prices by uploading CSV files while adhering to strict business rules established by the finance and marketing teams.
+This web application is specifically designed for updating product prices within an e-commerce database. Users have the ability to modify both individual product prices and pack prices by uploading CSV files while adhering to business rules established by the finance and marketing teams.
 
 The client-side of the application is built using React.js (JavaScript), providing a user-friendly interface. On the server-side, Node.js (TypeScript) with Express.js powers the application, enabling seamless communication and request handling. The database interaction is managed through a containerized MySQL setup, leveraging Docker Compose for efficient management.
-
-The primary objective of this application is to deliver an intuitive interface that streamlines the process of updating prices for products and packs. By harnessing the capabilities of React.js and Node.js, the application ensures the availability of accurate and up-to-date pricing information for the e-commerce platform. The ultimate goal is to provide a seamless and responsive user experience.
 
 ## 🚀 Built With
 
@@ -15,7 +13,7 @@ The primary objective of this application is to deliver an intuitive interface t
 ## 📌 Lessons Learned
 
 - Develop an e-commerce database management application using React.js and Node.js to fulfill business rules requirements.
-- Plan and organize the directory structure.
+- Plan and organize both the directory structure and the fulfillment of the requirements.
 - Implement functionality to upload and manipulate CSV files for updating the MySQL database.
 
 ## Getting Started
@@ -36,9 +34,9 @@ Initially, you need to configure your environment variables:
 
 Rename `.env.example` file, on root directory, to `.env`.
 
-You can choose to alter this environment if you fell the need to do it.
+*You can choose to alter this environment if you fell the need to do it.*
 
-After that, the server application can be started with:
+After that, the application can be started with:
 
 ```bash
 npm start
@@ -50,7 +48,7 @@ Or, also with the development script:
 ```bash
 npm run dev
 ```
-This script starts both the client and server on development mode!
+This script starts both the client and server (on development mode)!
 
 ## 📜 Business Rules
 
