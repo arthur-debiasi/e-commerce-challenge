@@ -36,6 +36,12 @@ Rename `.env.example` file, on server directory, to `.env`.
 
 *You can choose to alter this environment if you fell the need to do it.*
 
+Then, you can run the database with:
+
+```bash
+npm run database:up
+```
+
 After that, the application can be started with:
 
 ```bash
