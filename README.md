@@ -32,7 +32,7 @@ This script installs dependencies for both the client and server!
 
 Initially, you need to configure your environment variables:
 
-Rename `.env.example` file, on root directory, to `.env`.
+Rename `.env.example` file, on server directory, to `.env`.
 
 *You can choose to alter this environment if you fell the need to do it.*
 
