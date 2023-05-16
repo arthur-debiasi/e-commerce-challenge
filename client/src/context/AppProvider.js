@@ -24,7 +24,6 @@ export default function AppProvider({ children }) {
       setUpdateMsg('');
       setProducts(data);
       const shouldUpdate = data.every(({ finErr, mktErr }) => {
-        console.log(mktErr, finErr);
         return finErr === 'OK' && mktErr === 'OK';
       });
       setCanUpdate(shouldUpdate);
