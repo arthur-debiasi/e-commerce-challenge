@@ -8,7 +8,7 @@
     "install": "concurrently \"npm run install:server\" \"npm run install:client\"",
     "install:client": "cd client && npm i",
     "install:server": "cd server && npm i",
-    "dev": "concurrently \"npm run database:up\" \"npm run server:dev\" \"npm run client\"",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
     "database:up": "docker-compose up -d",
     "database:down": "docker-compose down",
     "server": "cd server && npm start",
