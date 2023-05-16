@@ -11,6 +11,7 @@ export default function AppProvider({ children }) {
   const [canUpdate, setCanUpdate] = useState(false);
 
   const handleFileChange = useCallback((event) => {
+    setCanUpdate(false);
     setSelectedFile(event.target.files[0]);
   }, []);
 
@@ -20,8 +21,13 @@ export default function AppProvider({ children }) {
     try {
       const { data } = await axios.post('http://localhost:3001/products/validate', formData);
       setUploadErr('');
+      setUpdateMsg('');
       setProducts(data);
-      setCanUpdate(true);
+      const shouldUpdate = data.every(({ finErr, mktErr }) => {
+        console.log(mktErr, finErr);
+        return finErr === 'OK' && mktErr === 'OK';
+      });
+      setCanUpdate(shouldUpdate);
     } catch (error) {
       if (error.response) {
         console.error('Error uploading file:', error.response.status);
@@ -36,7 +42,7 @@ export default function AppProvider({ children }) {
           setUploadErr('O arquivo CSV contém valores não-numéricos.');
           setCanUpdate(false);
         } else if (error.response.data.error === 'PRODUCT_NOT_FOUND') {
-          const code = error.response.data.product_code;
+          const code = error.response.data.productCode;
           console.error(`O produto de código ${code} não foi encontrado.`);
           setProducts([]);
           setUploadErr(`O produto de código ${code} não foi encontrado.`);
@@ -52,10 +58,10 @@ export default function AppProvider({ children }) {
     const formData = new FormData();
     formData.append('file', selectedFile);
     try {
-      const { data } = await axios.put('http://localhost:3001/products/update', formData);
+      await axios.put('http://localhost:3001/products/update', formData);
       setUpdateMsg('Produto(s) atualizados com sucesso!');
-      setProducts(data);
-      setCanUpdate(true);
+      setProducts([]);
+      setCanUpdate(false);
     } catch (error) {
       console.error('Error uploading file:', error.response.status);
     }
